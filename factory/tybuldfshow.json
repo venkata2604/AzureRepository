@@ -1,0 +1,9 @@
+{
+	"name": "tybuldfshow",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "e735b649-d9cf-41d7-bfe6-07da3b960f3a",
+		"tenantId": "7afb9e22-9308-4186-8e29-ea231ff3baf7"
+	}
+}
