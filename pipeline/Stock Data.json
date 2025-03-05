@@ -3,20 +3,6 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Rapid API",
-				"description": "This will allow us to access the Key vault secrets and access the RAPIDAPI",
-				"type": "WebActivity",
-				"dependsOn": [],
-				"policy": {
-					"timeout": "0.12:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": []
-			},
-			{
 				"name": "Stocks lookup",
 				"type": "Lookup",
 				"dependsOn": [],
@@ -45,6 +31,12 @@
 						"type": "DatasetReference"
 					}
 				}
+			},
+			{
+				"name": "ForEach1",
+				"type": "ForEach",
+				"dependsOn": [],
+				"userProperties": []
 			}
 		],
 		"annotations": []
