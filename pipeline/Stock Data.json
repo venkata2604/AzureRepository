@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Stocks lookup",
+				"name": "Stockslookup",
 				"type": "Lookup",
 				"state": "Inactive",
 				"onInactiveMarkAs": "Succeeded",
@@ -37,11 +37,9 @@
 			{
 				"name": "GetStockDataIteratively",
 				"type": "ForEach",
-				"state": "Inactive",
-				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
-						"activity": "Stocks lookup",
+						"activity": "Stockslookup",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -49,6 +47,10 @@
 				],
 				"userProperties": [],
 				"typeProperties": {
+					"items": {
+						"value": "@activity('Stockslookup').output.value",
+						"type": "Expression"
+					},
 					"isSequential": true,
 					"activities": [
 						{
