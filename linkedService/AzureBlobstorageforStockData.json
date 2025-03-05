@@ -1,0 +1,11 @@
+{
+	"name": "AzureBlobstorageforStockData",
+	"properties": {
+		"annotations": [],
+		"type": "AzureBlobStorage",
+		"typeProperties": {
+			"serviceEndpoint": "https://avskrdatalakestorage.blob.core.windows.net/",
+			"accountKind": "StorageV2"
+		}
+	}
+}
