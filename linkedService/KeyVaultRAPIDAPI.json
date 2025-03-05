@@ -1,0 +1,10 @@
+{
+	"name": "KeyVaultRAPIDAPI",
+	"properties": {
+		"annotations": [],
+		"type": "AzureKeyVault",
+		"typeProperties": {
+			"baseUrl": "https://rapidapi-avskr.vault.azure.net/"
+		}
+	}
+}
