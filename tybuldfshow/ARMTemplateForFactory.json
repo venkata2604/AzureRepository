@@ -147,8 +147,8 @@
 							"headers": {},
 							"url": "https://rapidapi-avskr.vault.azure.net/secrets/yahooAPIgetstockdata?api-version=7.0",
 							"authentication": {
-								"resource": "https://vault.azure.net",
-								"type": "UserAssignedManagedIdentity"
+								"type": "MSI",
+								"resource": "https://vault.azure.net"
 							}
 						}
 					}
