@@ -3,7 +3,8 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Web1",
+				"name": "Rapid API",
+				"description": "This will allow us to access the Key vault secrets and access the RAPIDAPI",
 				"type": "WebActivity",
 				"dependsOn": [],
 				"policy": {
@@ -14,6 +15,36 @@
 					"secureInput": false
 				},
 				"userProperties": []
+			},
+			{
+				"name": "Stocks lookup",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "JsonSource",
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "JsonReadSettings"
+						}
+					},
+					"dataset": {
+						"referenceName": "json_list_of_stocks",
+						"type": "DatasetReference"
+					}
+				}
 			}
 		],
 		"annotations": []

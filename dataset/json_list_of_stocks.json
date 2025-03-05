@@ -1,0 +1,30 @@
+{
+	"name": "json_list_of_stocks",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobstorageforStockData",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "stocklist.json",
+				"folderPath": "yahoofinanceapi",
+				"container": "raw"
+			}
+		},
+		"schema": {
+			"type": "object",
+			"properties": {
+				"symbols": {
+					"type": "array",
+					"items": {
+						"type": "string"
+					}
+				}
+			}
+		}
+	}
+}
