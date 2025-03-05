@@ -27,7 +27,7 @@
 			"properties": {
 				"activities": [
 					{
-						"name": "Stocks lookup",
+						"name": "Stockslookup",
 						"type": "Lookup",
 						"state": "Inactive",
 						"onInactiveMarkAs": "Succeeded",
@@ -66,7 +66,7 @@
 						"onInactiveMarkAs": "Succeeded",
 						"dependsOn": [
 							{
-								"activity": "Stocks lookup",
+								"activity": "Stockslookup",
 								"dependencyConditions": [
 									"Succeeded"
 								]
@@ -74,6 +74,10 @@
 						],
 						"userProperties": [],
 						"typeProperties": {
+							"items": {
+								"value": "@activity('Stockslookup').output.value",
+								"type": "Expression"
+							},
 							"isSequential": true,
 							"activities": [
 								{
@@ -124,6 +128,28 @@
 									}
 								}
 							]
+						}
+					},
+					{
+						"name": "FetchStockDataAPI_copy1",
+						"type": "WebActivity",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"method": "GET",
+							"headers": {},
+							"url": "https://rapidapi-avskr.vault.azure.net/secrets/yahooAPIgetstockdata?api-version=7.0",
+							"authentication": {
+								"resource": "https://vault.azure.net",
+								"type": "UserAssignedManagedIdentity"
+							}
 						}
 					}
 				],
