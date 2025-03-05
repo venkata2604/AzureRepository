@@ -35,77 +35,7 @@
 				}
 			},
 			{
-				"name": "GetStockDataIteratively",
-				"type": "ForEach",
-				"state": "Inactive",
-				"onInactiveMarkAs": "Succeeded",
-				"dependsOn": [
-					{
-						"activity": "Stockslookup",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"userProperties": [],
-				"typeProperties": {
-					"items": {
-						"value": "@activity('Stockslookup').output.value",
-						"type": "Expression"
-					},
-					"isSequential": true,
-					"activities": [
-						{
-							"name": "FetchStockDataAPI",
-							"type": "WebActivity",
-							"dependsOn": [],
-							"policy": {
-								"timeout": "0.12:00:00",
-								"retry": 0,
-								"retryIntervalInSeconds": 30,
-								"secureOutput": false,
-								"secureInput": false
-							},
-							"userProperties": [],
-							"typeProperties": {
-								"method": "GET",
-								"url": "https://rapidapi-avskr.vault.azure.net/secrets/yahooAPIgetstockdata?api-version=7.0",
-								"authentication": {
-									"type": "MSI",
-									"resource": "https://vault.azure.net"
-								}
-							}
-						},
-						{
-							"name": "Copy data1",
-							"type": "Copy",
-							"state": "Inactive",
-							"onInactiveMarkAs": "Succeeded",
-							"dependsOn": [
-								{
-									"activity": "FetchStockDataAPI",
-									"dependencyConditions": [
-										"Succeeded"
-									]
-								}
-							],
-							"policy": {
-								"timeout": "0.12:00:00",
-								"retry": 0,
-								"retryIntervalInSeconds": 30,
-								"secureOutput": false,
-								"secureInput": false
-							},
-							"userProperties": [],
-							"typeProperties": {
-								"enableStaging": false
-							}
-						}
-					]
-				}
-			},
-			{
-				"name": "FetchStockDataAPI_copy1",
+				"name": "GetAPIKeyVault",
 				"type": "WebActivity",
 				"dependsOn": [],
 				"policy": {
@@ -118,6 +48,12 @@
 				"userProperties": [],
 				"typeProperties": {
 					"method": "GET",
+					"linkedServices": [
+						{
+							"referenceName": "KeyVaultRAPIDAPI",
+							"type": "LinkedServiceReference"
+						}
+					],
 					"url": "https://rapidapi-avskr.vault.azure.net/secrets/yahooAPIgetstockdata?api-version=7.0",
 					"authentication": {
 						"type": "MSI",
